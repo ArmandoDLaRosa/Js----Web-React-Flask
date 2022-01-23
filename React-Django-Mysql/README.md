@@ -27,7 +27,7 @@
   * Helps with frontend styling
 * React
   * react-router-dom
-    * Helps with routing
+    * Helps with routing (Frontend)
 
 ## Steps to be setup (BACKEND/FRONTEND)
 ---
