@@ -23,8 +23,13 @@
   * Route
   * Connectors for ODBC and Python 
 * Node JS
+* Bootstrap
+  * Helps with frontend styling
+* React
+  * react-router-dom
+    * Helps with routing
 
-## Steps to be setup
+## Steps to be setup (BACKEND/FRONTEND)
 ---
 0) Make sure you've WSL working in VSCODE and your USER/Root passwords in hand. 
 1) Create python environment (venv files should be good inside the project folder)
@@ -81,7 +86,7 @@
     pip install ConfigParser
     ```
    
-## Project
+## Project Backend
 ---
 1) A PROJECT can have many Apps, to start one App run the following
     ```
@@ -155,6 +160,15 @@
 
 6) Add those new routes in the main `urls.py`file inside the Project Folder, which is the project folder.
 
+7) Add a folder in the App Folder Level to store the pictures, this could be change later and use a cloud bucket
+   1) In settings.py add the following
+   ```
+   import os
+   BASE_DIR = Path(__file__).resolve(strict = True).parent.parent
+   MEDIA_URL = '/Photos/' 
+   MEDIA_ROOT= os.path.join(BASE_DIR, "Photos") 
+   ```
+  2) Create the API method in views.py, and its route in urls.py(App folder)
 ...
 ---
 Now we can test the project 
@@ -162,12 +176,34 @@ Now we can test the project
     ```
     python manage.py runserver
     ```
-   
+
 ## Django Production
 1) Change the secret key in settings.py [Example on how to change the one ](https://programadorwebvalencia.com/como-generar-un-secret-key-en-django/)
 2) Change the Debug in settings.py from 'True' to 'False'
 3) Change CORs Configurations in settings.py to just whilelist unimportant stuff
    
+
+## Project Frontend (REACT)
+---
+[Icons library](https://icons.getbootstrap.com/)
+1) Go to the Folder at the level of the Repo
+2) Start a React project
+   ```
+   npx create-react-app <nameOfApp>
+   ```
+3) Inside the <nameOfApp> project you can
+   run the default code with 
+   ```
+   npm start
+   ```
+3) Code you components and then add them to 
+   App.js
+4) Add Bootstrap [CSs Header, Js Header](https://getbootstrap.com/docs/5.1/getting-started/introduction/)
+   1) CSS Place it in index.html in the head section
+   2) JS place before </body> in index.html
+5) Add Routes using react-router-dom in App.js
+6) Create Variables.js to store our API endpoints
+          
 ## CLOSE / RESTART / START  THE PROJECT
 ---
 * Repository
@@ -206,6 +242,7 @@ Now we can test the project
     `sudo apt install python3-pip`
     `virtualenv <envName>`
     `pip install -r requirements.txt`
+* Load frotend packages `npm install`
 * Open/Close MySQLService.exe in Task 
   Manager
 * Close/Open the virtual env

@@ -8,6 +8,8 @@ from django.http.response import JsonResponse
 from Workers.models import Departments, Employees
 from Workers.serializers import DepartmentSerializer, EmployeeSerializer
 
+from django.core.files.storage import default_storage #To Store Photos
+
 # Create your views here.
 @csrf_exempt
 def departmentApi(request, id=0):  # Optional id
@@ -16,9 +18,7 @@ def departmentApi(request, id=0):  # Optional id
         departments_serializer=DepartmentSerializer(departments, many=True) # Changes data to json
         return JsonResponse(departments_serializer.data, safe=False)  # Tells Django that json is a valid format
     elif request.method == 'POST': # Push 1 record to table
-        print("\n\n\n")
         departments_data = JSONParser().parse(request)
-        print("HI")
         departments_serializer = DepartmentSerializer(data=departments_data) # Pass JSON into model instance
         if departments_serializer.is_valid():
             departments_serializer.save()
@@ -44,9 +44,7 @@ def employeeApi(request, id=0):  # Optional id
         employees_serializer=EmployeeSerializer(employees, many=True) # Changes data to json
         return JsonResponse(employees_serializer.data, safe=False)  # Tells Django that json is a valid format
     elif request.method == 'POST': # Push 1 record to table
-        print("\n\n\n")
         employees_data = JSONParser().parse(request)
-        print("HI")
         employees_serializer = EmployeeSerializer(data=employees_data) # Pass JSON into model instance
         if employees_serializer.is_valid():
             employees_serializer.save()
@@ -64,3 +62,10 @@ def employeeApi(request, id=0):  # Optional id
         employee=Employees.objects.get(EmployeeId=id)
         employee.delete()
         return JsonResponse("Deleted Succesfully",  safe=False)
+
+@csrf_exempt
+def SaveFile(request):
+    file =  request.FILES['file']
+    file_name = default_storage.save(file.name, file)
+    return JsonResponse(file_name, safe=False)
+
