@@ -245,6 +245,12 @@ Now we can test the project
 * Load frotend packages `npm install`
 * Open/Close MySQLService.exe in Task 
   Manager
+* When connecting to the DB from new location or using VPN make sure that
+  *  You changed the HOST's IP in the config.ini file
+  *  the DB User's "limit to host matching" has the IP whitelisted
+     * You add a new iP using a slash between IPs: IP/IP
+  *  You're not using a Mobile Network such as 3g or 4g as WSL doesn't work that WSL_Django-Windows_Mysql
+     over those types of networks
 * Close/Open the virtual env
 * Open/Shutdown WSL, Vscode, other .exe
 * Commit the changes with a meaninful commit message

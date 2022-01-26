@@ -1,4 +1,3 @@
-import {tsConstructorType} from '@babel/types';
 import React, {Component} from 'react';
 import { variables } from '../Variables';
 
@@ -108,7 +107,6 @@ export class Department extends Component {
     }
 
     render(){
-
         const {
             departments,
             modalTitle,
