@@ -25,9 +25,7 @@ export class Employee extends Component {
         .then(data => {
             this.setState({departments:data})
         });
-    }
 
-    refreshList(){
         fetch(variables.API_URL+'employee')
         .then(response => response.json())
         .then(data => {
@@ -139,6 +137,22 @@ export class Employee extends Component {
         }
     }
 
+    imageUpload = (e) => {
+        e.preventDefault();
+
+        const formData = new FormData();
+        formData.append("file", e.target.files[0], e.target.files[0].name);
+
+        fetch(variables.API_URL+ 'employee/savefile', {
+            method: 'POST',
+            body:formData
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            this.setState({PhotoFileName:data});
+        })
+    }
+
     render(){
         const {
             departments,
@@ -226,7 +240,7 @@ export class Employee extends Component {
                                                 value={Department}>
                                                 {departments.map(dep => 
                                                 <option key={dep.DepartmentId}>
-                                                    {dep.Department}
+                                                    {dep.DepartmentName}
                                                 </option>)}
                                         </select>
                                     </div>   
@@ -239,17 +253,18 @@ export class Employee extends Component {
                                 </div>           
                                 <div className='p-2 w-50 bd-highlight'>
                                     <img width="250px" height="250px"
-                                         src={PhotoPath+PhotoFileName}/>
-                                </div>                                                                             
-                                    {EmployeeId===0? <button type="button"
+                                        src={PhotoPath+PhotoFileName}/>
+                                    <input className='m-2' type='file' onChange={this.imageUpload}/>
+                                </div>                                                                              
+                            </div>         
+                            {EmployeeId===0? <button type="button"
                                                             className='btn btn-primary float-start'
                                                             onClick={() => this.createClick()}>                                                             
-                                                    Create</button>:null}  
-                                    {EmployeeId!==0? <button type="button"
-                                                            className='btn btn-primary float-start'
-                                                            onClick={()=>this.updateClick()}>                                                            
-                                                    Update</button>:null}   
-                            </div>                  
+                                             Create</button>:null}  
+                            {EmployeeId!==0? <button type="button"
+                                                    className='btn btn-primary float-start'
+                                                    onClick={()=>this.updateClick()}>                                                            
+                                             Update</button>:null}           
                         </div>
                     </div>
                    </div> 

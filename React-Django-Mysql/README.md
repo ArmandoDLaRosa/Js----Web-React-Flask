@@ -242,7 +242,7 @@ Now we can test the project
     `sudo apt install python3-pip`
     `virtualenv <envName>`
     `pip install -r requirements.txt`
-* Load frotend packages `npm install`
+* Load frontend packages `npm install`
 * Open/Close MySQLService.exe in Task 
   Manager
 * When connecting to the DB from new location or using VPN make sure that
