@@ -14,7 +14,7 @@ export class Employee extends Component {
             EmployeeName:"",
             Department: "",
             DateOfJoining:"",
-            PhotoFileName:"anonymous.png",
+            PhotoFileName:"anonymous.jpg",
             PhotoPath:variables.PHOTO_URL
         }
     }
@@ -58,7 +58,7 @@ export class Employee extends Component {
             EmployeeName:"",
             Department: "",
             DateOfJoining:"",
-            PhotoFileName:"anonymous.png"
+            PhotoFileName:"anonymous.jpg"
         })
     }
 
