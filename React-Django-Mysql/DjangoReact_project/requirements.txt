@@ -3,7 +3,7 @@ backports.zoneinfo==0.2.1
 cffi==1.15.0
 configparser==5.2.0
 cryptography==36.0.1
-Django==4.0.1
+Django==4.0.4
 django-cors-headers==3.11.0
 djangorestframework==3.13.1
 pycparser==2.21
